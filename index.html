@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- Font Awesome CSS Icons (For cool glyphicons) -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+
+<body>
+    <div id="Hero-banner">
+        <h1>Work Day Scheduler</h1>
+        <p>This is little decription box</p>
+        <h3 id=currentTimeBox></h3>
+        <hr id="Hero-banner-border">
+    </div>
+
+    <div id="Scheduler-body">
+
+        <div class="slotBox">
+            <h3 class="slotHourBox">9:00AM</h3>
+            <div id="eventBox9">
+                <input id="inputBox" placeholder="Add Event"></input>
+            </div>
+            <button class="saveButton">SAVE</button>
+        </div>
+
+        <div class="slotBox">
+            <h3 class="slotHourBox">10:00AM</h3>
+            <div id="eventBox10">
+                <input id="inputBox" placeholder="Add Event"></input>
+            </div>
+            <button class="saveButton">SAVE</button>
+        </div>
+
+        <div class="slotBox">
+            <h3 class="slotHourBox">11:00AM</h3>
+            <div id="eventBox11">
+                <input id="inputBox11" placeholder="Add Event"></input>
+            </div>
+            <button class="saveButton">SAVE</button>
+        </div>
+
+    </div>
+
+    <!-- jQuery JS -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Code to the JavaScript File -->
+    <script src="moment.js"></script>
+
+    <script>
+        var userInput = $("#inputBox");
+        var saveBtn = $(".saveButton");
+        var slotHour = $(".slotHourBox");
+        var slotBox = $("slotBox");
+        var storedEvent = [];
+
+        var workHour = ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"];
+
+        //----current time---//
+        // var m = moment();
+        // console.log(m);
+        var time = moment().format('LT');
+        var showCurrentTime = $("#currentTimeBox");
+        showCurrentTime.append(time);
+
+
+        //--user input--//
+
+
+
+
+        //--hour/color change--//
+        colorChanger();
+        
+
+        function colorChanger() {
+
+            time2 = time.replace(/[PM AM]/g, "");
+
+            
+            for ( var i = 0; i < workHour.length; i++) {
+
+                
+                // slotHour.append(workHour[i]);
+                // console.log(workHour[i]);
+
+                if (time2 > workHour[i]) {
+                    console.log("hi");
+                }
+
+                if (time2 < slotHour.text) {
+                    console.log("hello");
+                }
+
+                if (time2 = slotHour.text) {
+
+                }
+
+
+
+
+            }
+
+
+
+        };
+
+
+
+
+    </script>
+
+</body>
+
+</html>
