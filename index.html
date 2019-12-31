@@ -14,36 +14,20 @@
 
 <body>
     <div id="Hero-banner">
+        <!-- <button class="testBtn">Test</button>
+        <input class="testInput" placeholder="write here"> -->
         <h1>Work Day Scheduler</h1>
-        <p>This is little decription box</p>
+        <p>This is little description box</p>
         <h3 id=currentTimeBox></h3>
-        <hr id="Hero-banner-border">
+
+
     </div>
 
     <div id="Scheduler-body">
 
-        <div class="slotBox">
-            <h3 class="slotHourBox">9:00AM</h3>
-            <div id="eventBox9">
-                <input id="inputBox" placeholder="Add Event"></input>
-            </div>
-            <button class="saveButton">SAVE</button>
-        </div>
+        <div class="slotBoxs">
 
-        <div class="slotBox">
-            <h3 class="slotHourBox">10:00AM</h3>
-            <div id="eventBox10">
-                <input id="inputBox" placeholder="Add Event"></input>
-            </div>
-            <button class="saveButton">SAVE</button>
-        </div>
 
-        <div class="slotBox">
-            <h3 class="slotHourBox">11:00AM</h3>
-            <div id="eventBox11">
-                <input id="inputBox11" placeholder="Add Event"></input>
-            </div>
-            <button class="saveButton">SAVE</button>
         </div>
 
     </div>
@@ -55,62 +39,180 @@
     <script src="moment.js"></script>
 
     <script>
-        var userInput = $("#inputBox");
-        var saveBtn = $(".saveButton");
-        var slotHour = $(".slotHourBox");
-        var slotBox = $("slotBox");
-        var storedEvent = [];
 
-        var workHour = ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"];
+        var workHour = [
+            {
+                slot: "1",
+                time: "9:00 AM"
+            },
+            {
+                slot: "2",
+                time: "10:00 AM"
+            },
+            {
+                slot: "3",
+                time: "11:00 AM"
+            },
+            {
+                slot: "4",
+                time: "12:00 PM"
+            },
+            {
+                slot: "5",
+                time: "1:00 PM"
+            },
+            {
+                slot: "6",
+                time: "2:00 PM"
+            },
+            {
+                slot: "7",
+                time: "3:00 PM"
+            },
+            {
+                slot: "8",
+                time: "4:00 PM"
+            },
+            {
+                slot: "9",
+                time: "5:00 PM"
+            },
 
-        //----current time---//
-        // var m = moment();
-        // console.log(m);
-        var time = moment().format('LT');
-        var showCurrentTime = $("#currentTimeBox");
-        showCurrentTime.append(time);
+        ]
+
+
+        var slotBox = $(".slotBoxs");
+        var eventStorage = ["A", "B"];
+        //var numberIndex = 1;
+
+        var currentHour = moment().format('LT');
+       
+
+        console.log("Current Hour is " + currentHour);
+        console.log("---------");
+
+
+        //--append html elements --//
+        for (var i = 0; i < workHour.length; i++) {
+
+            var slotLine = $("<div>");
+            slotLine.addClass("slotLine");
+            slotBox.append(slotLine);
+
+            var timeBox = $("<h3>");
+            timeBox.addClass("slotHourBox");
+            timeBox.text(workHour[i].time);
+            slotLine.append(timeBox);
+
+            var inputBox = $("<input>");
+            inputBox.addClass("inputBox");
+            inputBox.attr("placeholder", "Add Event Here");
+            slotLine.append(inputBox);
+
+            var saveBtn = $("<button>");
+            saveBtn.addClass("saveButton");
+            saveBtn.text("SAVE");
+            slotLine.append(saveBtn);
+            // numberIndex++;
+
+
+            //---color changer--//
+            var writtenHour = timeBox.text();
+            var currentHour2 = parseInt(currentHour);
+            var writtenHour2 = parseInt(writtenHour);
+
+
+
+            if (currentHour.search("P") == 5) {
+                console.log("Now is PM");
+
+                if (writtenHour.search("P") == 5) {
+
+                    if (currentHour2 > writtenHour2) {
+                        console.log("EventPassed");
+                        slotLine.addClass("eventPassed");
+
+                    }
+
+                    if (currentHour2 < writtenHour2) {
+                        console.log("EventNotPassed");
+                        slotLine.addClass("eventNotPassed");
+
+                    }
+
+                    if (currentHour2 == writtenHour2) {
+                        console.log("EventPresent");
+                        slotLine.addClass("eventPresent");
+
+                    }
+
+                }
+            }
+
+            if (currentHour.search("A") == 5) {
+                console.log("Now is AM");
+
+                if (writtenHour.search("A") == 5) {
+
+                    if (currentHour2 > writtenHour2) {
+                        console.log("EventPassed");
+                        slotLine.addClass("eventPassed");
+
+                    }
+
+                    if (currentHour2 < writtenHour2) {
+                        console.log("EventNotPassed");
+                        slotLine.addClass("eventNotPassed");
+
+                    }
+
+                    if (currentHour2 == writtenHour2) {
+                        console.log("EventPresent");
+                        slotLine.addClass("eventPresent");
+
+                    }
+
+                }
+            }
+
+        }
+
+
+
 
 
         //--user input--//
 
 
+        function saveInput(Event) {
+
+            event.preventDefault();
+
+            var userInput = event.target.previousElementSibling.value;
+            console.log(JSON.stringify(userInput));
+
+            eventStorage.push(JSON.stringify(userInput));
+            localStorage.setItem('saveEvent', eventStorage);
 
 
-        //--hour/color change--//
-        colorChanger();
-        
-
-        function colorChanger() {
-
-            time2 = time.replace(/[PM AM]/g, "");
-
-            
-            for ( var i = 0; i < workHour.length; i++) {
-
-                
-                // slotHour.append(workHour[i]);
-                // console.log(workHour[i]);
-
-                if (time2 > workHour[i]) {
-                    console.log("hi");
-                }
-
-                if (time2 < slotHour.text) {
-                    console.log("hello");
-                }
-
-                if (time2 = slotHour.text) {
-
-                }
+        }
 
 
 
 
-            }
 
 
 
-        };
+
+
+
+        saveBtn.click(saveInput);
+
+
+
+
+
+
 
 
 

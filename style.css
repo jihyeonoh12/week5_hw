@@ -1,8 +1,18 @@
 body {
     text-align: center;
 }
+h3 {
+    padding-top: 20px;
+}
 
 .slotBox {
+    height: 100px;
+    border-top: solid 1px black;
+    
+
+}
+
+.slotLine {
     height: 100px;
     border-top: solid 1px black;
     
@@ -12,33 +22,63 @@ body {
 .slotHourBox {
     
     width: 100px;
-    height: 100px;
+    height: 60px;
     float: left;
     
     border-right: solid 1px black;
     margin: 0px;
+    padding-top: 40px;
     position: relative;
+    background-color: white;
     
     
 }
 
 button {
+        float: right;
+
     height: 100px;
     width: 100px;
-    background-color: rgb(91, 148, 235);
+    background-color: rgb(33, 32, 136);
     color: white;
-    float: right;
+    
     margin-top: 0px;
-    border-radius: 15px;
     
 }
 
 input {
-    position: absolute;
+
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+
+    float: left;
     left:150px;
     height: 80px;
     border: none;
-    width: 50%;
-    margin-top: 5px;
-    margin-left: 0px;
+    /* width: 50%; */
+    margin-top: 10px;
+    margin-left: 10px;
+    /* background-color: white; */
+    background: none;
+
+    font-size: 1em;
+}
+
+.eventPassed {
+
+    background-color: rgb(188, 213, 252);
+
+}
+
+.eventNotPassed {
+
+    background-color: rgb(252, 243, 165);
+
+}
+
+.eventPresent {
+
+    background-color: rgb(165, 252, 187);
+
 }
